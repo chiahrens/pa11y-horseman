@@ -1,0 +1,25 @@
+{
+  "name": "pa11y-horseman",
+  "version": "1.0.0",
+  "description": "pa11y ADA scan with node-horseman api for Phantomjs interaction",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chiahrens/pa11y-horseman.git"
+  },
+  "author": "Chi Ahrens",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/chiahrens/pa11y-horseman/issues"
+  },
+  "homepage": "https://github.com/chiahrens/pa11y-horseman#readme",
+  "dependencies": {
+    "node-horseman": "^3.1.1",
+    "node.extend": "^1.1.5",
+    "pa11y": "^4.0.1",
+    "phantomjs": "^2.1.7"
+  }
+}
