@@ -7,42 +7,37 @@ pa11y-horseman lets you use [Horseman](https://github.com/johntitus/node-horsema
 ### Scan search results on Google
 
 ```js
-var pa11yHorseman = require("pa11y-horseman");
+var Pa11yHorseman = require("pa11y-horseman");
 
-pa11yHorseman.scan('http://www.google.com', {}, function(horseman, done){
-  horseman = horseman
+pa11yHorseman = new Pa11yHorseman();
+
+pa11yHorseman.open('http://www.google.com')
     .type('input[name="q"]', 'github')
-    .click('[name="btnK"]')
     .keyboardEvent('keypress', 16777221)
-    .waitForSelector('div.g');
-  done(horseman,function(data){
-    console.log(data);
-  });	
-});
+    .wait(5000)
+    .pa11y()
+    .then((data) => {
+    	console.log(data);
+    })
+    .close()
 ```
 
-### Scan search results on Google using different userAgent, viewport, and save screenshot.
+### Scan search results on Google and ignore notices
 
 ```js
-var pa11yHorseman = require("pa11y-horseman");
+var Pa11yHorseman = require("pa11y-horseman");
 
-pa11yHorseman.scan('http://www.google.com', {
-  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36',
-  viewport:{
-    width: 1200,
-    height: 800
-  },
-  screenshot: '/tmp/screenshot.png'
-}, function(horseman, done){
-  horseman = horseman
+pa11yHorseman = new Pa11yHorseman();
+
+pa11yHorseman.open('http://www.google.com')
     .type('input[name="q"]', 'github')
-    .click('[name="btnK"]')
     .keyboardEvent('keypress', 16777221)
-    .waitForSelector('div.g');
-  done(horseman,function(data){
-    console.log(data);
-  });	
-});
+    .wait(5000)
+    .pa11y({ignore:['notice']})
+    .then((data) => {
+    	console.log(data);
+    })
+    .close()
 ```
 
 ## Installation
@@ -53,26 +48,13 @@ pa11yHorseman.scan('http://www.google.com', {
 
 ### Scan
 ```
-pa11yHorseman.scan(url, options, function(horseman, done){
-  // make your horseman calls here
-  done(horseman, function(data)){
+pa11yHorseman.pa11y(pa11yOptions)
+.then((data) =>{
     // data contains the pa11y scan results
-  }
 });
 ```
-Create a new instance that can navigate around the web.
+Scan the webpage using [pa11y](https://github.com/pa11y/pa11y)
 
-The available options are:
-
-  * [Some options available in Horseman](https://github.com/johntitus/node-horseman#setup)
-  * [Some options available in pa11y](https://github.com/pa11y/pa11y#configuration)
-  * `cookies` an array of cookies as expected by Phantomjs.
-  * `headers` an array of headers as expected by Phantomjs.
-  * `authentication` an object of username and password for basic authentication as expected by Phantomjs.
-  * `userAgent` a string value for userAgent as expected by Phantomjs.
-  * `viewport` an object of width and height as expected by Phantomjs.
-  * `screenshot` a string value of full path including filename of the screenshot file.
-  * 
   
 ### Please see [Horseman](https://github.com/johntitus/node-horseman) for full API supported by Horseman
 
