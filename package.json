@@ -1,6 +1,6 @@
 {
   "name": "pa11y-horseman",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "pa11y ADA scan with node-horseman api for Phantomjs interaction",
   "main": "lib/index.js",
   "scripts": {
